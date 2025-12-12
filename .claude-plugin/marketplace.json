@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "hoge",
-      "source": "../.claude",
+      "source": "./.claude",
       "description": "hogeと返すシンプルなコマンド",
       "version": "1.0.0"
     }
