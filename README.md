@@ -20,6 +20,20 @@ Claude Codeで以下のコマンドを実行してマーケットプレイスを
 
 このリポジトリの `.claude/commands/` ディレクトリ内のコマンドを、あなたのプロジェクトの `.claude/commands/` にコピーしてください。
 
+## アンインストール方法
+
+プラグインをアンインストールするには：
+
+```bash
+/plugin uninstall hoge
+```
+
+マーケットプレイス自体を削除するには：
+
+```bash
+/plugin marketplace remove cc-plugins
+```
+
 ## 利用可能なコマンド
 
 | コマンド | 説明 |
