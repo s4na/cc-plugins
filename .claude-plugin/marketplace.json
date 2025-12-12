@@ -1,0 +1,14 @@
+{
+  "name": "cc-plugins",
+  "owner": {
+    "name": "s4na"
+  },
+  "plugins": [
+    {
+      "name": "hoge",
+      "source": "../.claude",
+      "description": "hogeと返すシンプルなコマンド",
+      "version": "1.0.0"
+    }
+  ]
+}
