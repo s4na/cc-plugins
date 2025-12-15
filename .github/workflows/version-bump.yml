@@ -1,0 +1,47 @@
+name: Bump patch version
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  bump-version:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Bump patch version in marketplace.json
+        run: |
+          # Extract current version
+          current_version=$(jq -r '.plugins[0].version' .claude-plugin/marketplace.json)
+          echo "Current version: $current_version"
+
+          # Split version into parts
+          IFS='.' read -r major minor patch <<< "$current_version"
+
+          # Increment patch version
+          new_patch=$((patch + 1))
+          new_version="${major}.${minor}.${new_patch}"
+          echo "New version: $new_version"
+
+          # Update marketplace.json
+          jq --arg v "$new_version" '.plugins[0].version = $v' .claude-plugin/marketplace.json > tmp.json
+          mv tmp.json .claude-plugin/marketplace.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          new_version=$(jq -r '.plugins[0].version' .claude-plugin/marketplace.json)
+
+          git add .claude-plugin/marketplace.json
+          git commit -m "Bump version to ${new_version}"
+          git push
