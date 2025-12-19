@@ -9,6 +9,12 @@
       "source": "./.claude",
       "description": "hogeと返すシンプルなコマンド",
       "version": "1.0.1"
+    },
+    {
+      "name": "code-review",
+      "source": "./.claude",
+      "description": "複数のサブエージェントを並列実行して包括的なコードレビューを行うコマンド",
+      "version": "1.0.0"
     }
   ]
 }
