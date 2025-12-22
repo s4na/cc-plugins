@@ -9,6 +9,12 @@
       "source": "./.claude",
       "description": "hogeと返すシンプルなコマンド",
       "version": "1.0.1"
+    },
+    {
+      "name": "ruby-lsp",
+      "source": "./ruby-lsp",
+      "description": "Ruby LSP support for Claude Code",
+      "version": "1.0.0"
     }
   ]
 }
