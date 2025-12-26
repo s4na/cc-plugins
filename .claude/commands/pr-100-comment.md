@@ -2,20 +2,29 @@
 
 ## 引数
 
-PR番号: $ARGUMENTS
+PR指定子: $ARGUMENTS
+
+以下の形式を受け付けます（優先順位順）：
+1. **PR番号** (例: `123`)
+2. **PR URL** (例: `https://github.com/owner/repo/pull/123`)
+3. **ブランチ名** (例: `feature/my-branch`)
 
 ## 手順
 
-### Step 1: PRの情報を取得
+### Step 1: PRを特定
+
+引数 `$ARGUMENTS` を使用してPRを特定します。`gh` コマンドはPR番号、URL、ブランチ名のいずれも受け付けます。
 
 ```bash
-gh pr view $ARGUMENTS --json title,body,additions,deletions,changedFiles,files
+gh pr view "$ARGUMENTS" --json number,title,body,additions,deletions,changedFiles,files,url
 ```
+
+このコマンドが失敗した場合は、引数の形式が正しいか確認し、ユーザーに報告してください。
 
 ### Step 2: PRの差分を取得
 
 ```bash
-gh pr diff $ARGUMENTS
+gh pr diff "$ARGUMENTS"
 ```
 
 ### Step 3: 100個の事実を生成
@@ -48,7 +57,7 @@ gh pr diff $ARGUMENTS
 生成した100個の事実を以下のフォーマットでPRコメントとして投稿してください：
 
 ```bash
-gh pr comment $ARGUMENTS --body "$(cat <<'EOF'
+gh pr comment "$ARGUMENTS" --body "$(cat <<'EOF'
 ## このPRの変更点についての100個の事実
 
 1. ...
