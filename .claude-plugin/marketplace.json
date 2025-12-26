@@ -17,9 +17,9 @@
       "version": "1.0.0"
     },
     {
-      "name": "prompt-engineer",
+      "name": "manager",
       "source": "./.claude",
-      "description": "サブエージェント向けプロンプトを最適化するコマンド",
+      "description": "マネージャーモードで作業を全てサブエージェントに委譲するコマンド",
       "version": "1.0.0"
     }
   ]
