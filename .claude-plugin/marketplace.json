@@ -15,12 +15,6 @@
       "source": "./.claude",
       "description": "VOICEVOXのhimari(冥鳴ひまり)で音声読み上げするコマンド",
       "version": "1.0.0"
-    },
-    {
-      "name": "prompt-engineer",
-      "source": "./.claude",
-      "description": "サブエージェント向けプロンプトを最適化するコマンド",
-      "version": "1.0.0"
     }
   ]
 }
