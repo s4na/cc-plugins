@@ -12,12 +12,13 @@ Claude Codeで以下のコマンドを実行してマーケットプレイスを
 
 追加後、プラグインをインストールできます：
 
+hogeプラグイン（シンプルなサンプル）
 ```bash
-# hogeプラグイン（シンプルなサンプル）
 /plugin install hoge@cc-plugins
 ```
+
+basicプラグイン（便利なコマンド集）
 ```bash
-# basicプラグイン（便利なコマンド集）
 /plugin install basic@cc-plugins
 ```
 
