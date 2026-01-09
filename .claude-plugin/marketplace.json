@@ -11,27 +11,9 @@
       "version": "1.0.7"
     },
     {
-      "name": "himari",
-      "source": "./.claude",
-      "description": "VOICEVOXのhimari(冥鳴ひまり)で音声読み上げするコマンド",
-      "version": "1.0.0"
-    },
-    {
-      "name": "manager",
-      "source": "./.claude",
-      "description": "マネージャーモードで作業を全てサブエージェントに委譲するコマンド",
-      "version": "1.0.0"
-    },
-    {
-      "name": "browser",
-      "source": "./.claude",
-      "description": "Playwright MCPを使ってブラウザ操作を実行するコマンド",
-      "version": "1.0.0"
-    },
-    {
-      "name": "ask",
-      "source": "./.claude",
-      "description": "AskUserQuestionツールを使ってユーザーに質問を投げかけるコマンド",
+      "name": "basic",
+      "source": "./.claude-basic",
+      "description": "基本的なコマンド集（himari, manager, browser, ask）とサブエージェント",
       "version": "1.0.0"
     }
   ]
