@@ -21,6 +21,12 @@
       "source": "./.claude",
       "description": "マネージャーモードで作業を全てサブエージェントに委譲するコマンド",
       "version": "1.0.0"
+    },
+    {
+      "name": "browser",
+      "source": "./.claude",
+      "description": "Playwright MCPを使ってブラウザ操作を実行するコマンド",
+      "version": "1.0.0"
     }
   ]
 }
