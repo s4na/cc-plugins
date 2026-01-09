@@ -15,7 +15,8 @@ Claude Codeで以下のコマンドを実行してマーケットプレイスを
 ```bash
 # hogeプラグイン（シンプルなサンプル）
 /plugin install hoge@cc-plugins
-
+```
+```bash
 # basicプラグイン（便利なコマンド集）
 /plugin install basic@cc-plugins
 ```
