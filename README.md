@@ -13,12 +13,17 @@ Claude Codeで以下のコマンドを実行してマーケットプレイスを
 追加後、プラグインをインストールできます：
 
 ```bash
+# hogeプラグイン（シンプルなサンプル）
 /plugin install hoge@cc-plugins
+
+# basicプラグイン（便利なコマンド集）
+/plugin install basic@cc-plugins
 ```
 
 ### 手動インストール
 
-このリポジトリの `.claude/commands/` ディレクトリ内のコマンドを、あなたのプロジェクトの `.claude/commands/` にコピーしてください。
+- **hogeプラグイン**: `.claude/` ディレクトリをコピー
+- **basicプラグイン**: `.claude-basic/` ディレクトリを `.claude/` としてコピー
 
 ## アンインストール方法
 
@@ -26,6 +31,7 @@ Claude Codeで以下のコマンドを実行してマーケットプレイスを
 
 ```bash
 /plugin uninstall hoge
+/plugin uninstall basic
 ```
 
 マーケットプレイス自体を削除するには：
@@ -34,25 +40,32 @@ Claude Codeで以下のコマンドを実行してマーケットプレイスを
 /plugin marketplace remove cc-plugins
 ```
 
-## 利用可能なコマンド
+## 利用可能なプラグイン
+
+### hoge プラグイン
+
+シンプルなサンプルプラグインです。
 
 | コマンド | 説明 |
 |---------|------|
 | `/hoge` | "hoge" と返します |
+
+### basic プラグイン
+
+便利なコマンドとサブエージェントをまとめたプラグインです。
+
+#### コマンド
+
+| コマンド | 説明 |
+|---------|------|
 | `/himari <テキスト>` | VOICEVOXのhimari(冥鳴ひまり)でテキストを音声読み上げします |
 | `/manager <依頼内容>` | マネージャーモードで作業を全てサブエージェントに委譲します |
 | `/browser <依頼内容>` | Playwright MCPを使ってブラウザ操作を実行します |
 | `/ask <質問>` | AskUserQuestionツールを使ってユーザーに質問を投げかけます |
 
-## 利用可能なサブエージェント
-
-サブエージェントは `.claude/agents/` ディレクトリに配置します。
+#### サブエージェント
 
 | サブエージェント | 説明 |
 |-----------------|------|
 | `prompt-engineer` | サブエージェント向けプロンプトを最適化するエージェント |
 | `browser-operator` | Playwright MCPでブラウザ操作を実行するエージェント |
-
-### サブエージェントの手動インストール
-
-このリポジトリの `.claude/agents/` ディレクトリ内のファイルを、あなたのプロジェクトの `.claude/agents/` にコピーしてください。
