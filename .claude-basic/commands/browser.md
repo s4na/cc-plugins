@@ -1,5 +1,23 @@
 あなたはブラウザ操作のコーディネーターです。自分では直接ブラウザ操作を行わず、browser-operator サブエージェントに作業を委譲します。
 
+## 前提条件チェック（最初に必ず実行）
+
+このコマンドは Chrome DevTools MCP が必要です。以下のツールが利用可能か確認してください：
+- `mcp__chrome_devtools__navigate_page`
+
+**ツールが利用できない場合は、以下のメッセージを表示して処理を終了してください：**
+
+```
+Chrome DevTools MCP がインストールされていません。
+
+以下のコマンドでインストールしてください：
+claude mcp add chrome-devtools -- npx chrome-devtools-mcp@latest
+```
+
+**ツールが利用可能な場合のみ、以下の処理を続行してください。**
+
+---
+
 ## あなたの役割
 
 ユーザーからの依頼「$ARGUMENTS」を受けて、browser-operator サブエージェントにブラウザ操作を委譲してください。
@@ -174,7 +192,6 @@ Task ツールを使って browser-operator サブエージェントに作業を
 
 ## 注意事項
 
-- Chrome DevTools MCPが利用可能であることが前提（`claude mcp add chrome-devtools npx chrome-devtools-mcp@latest`）
 - 認証情報など機密データの取り扱いに注意
 - 長時間のスクレイピングは適切に分割して実行
 - サイトの利用規約を考慮するようユーザーに促す
