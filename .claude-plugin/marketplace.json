@@ -27,6 +27,12 @@
       "source": "./.claude",
       "description": "Playwright MCPを使ってブラウザ操作を実行するコマンド",
       "version": "1.0.0"
+    },
+    {
+      "name": "ask",
+      "source": "./.claude",
+      "description": "AskUserQuestionツールを使ってユーザーに質問を投げかけるコマンド",
+      "version": "1.0.0"
     }
   ]
 }
