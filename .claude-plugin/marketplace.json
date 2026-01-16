@@ -8,7 +8,7 @@
       "name": "hoge",
       "source": "./.claude-hoge",
       "description": "hogeと返すシンプルなコマンド",
-      "version": "1.0.16"
+      "version": "1.0.17"
     },
     {
       "name": "basic",
