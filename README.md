@@ -8,18 +8,26 @@ Claude Code用のカスタムスラッシュコマンド集です。
 
 [add-skill](https://github.com/vercel-labs/add-skill) を使って簡単にインストールできます。
 
+スキル一覧を確認:
 ```bash
-# スキル一覧を確認
 npx add-skill s4na/cc-plugins --list
+```
 
-# 全てのスキルをインストール
+全てのスキルをインストール:
+```bash
 npx add-skill s4na/cc-plugins
+```
 
-# 特定のスキルのみインストール
+特定のスキルのみインストール:
+```bash
 npx add-skill s4na/cc-plugins --skill basic
+```
+```bash
 npx add-skill s4na/cc-plugins --skill hoge
+```
 
-# グローバルインストール（ユーザーディレクトリ）
+グローバルインストール（ユーザーディレクトリ）:
+```bash
 npx add-skill s4na/cc-plugins -g
 ```
 
@@ -54,6 +62,8 @@ basicプラグイン（便利なコマンド集）
 
 ```bash
 /plugin uninstall hoge
+```
+```bash
 /plugin uninstall basic
 ```
 
