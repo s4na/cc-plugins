@@ -6,9 +6,9 @@
   "plugins": [
     {
       "name": "hoge",
-      "source": "./.claude",
+      "source": "./.claude-hoge",
       "description": "hogeと返すシンプルなコマンド",
-      "version": "1.0.14"
+      "version": "1.0.15"
     },
     {
       "name": "basic",
