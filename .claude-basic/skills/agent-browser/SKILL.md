@@ -1,10 +1,60 @@
+---
+name: agent-browser
+description: Agent Browser CLIを使ってブラウザ操作を自動実行するスキル。npx経由でブラウザ自動化タスクを委譲します。
+---
+
+# Agent Browser Skill
+
+Agent Browser CLIを使ってブラウザ操作を自動実行するスキルです。
+
+## Agent Browser とは
+
+Agent Browser は Vercel が開発した CLI ツールで、AI エージェントがブラウザを自動操作できるように設計されています。Chrome DevTools MCP とは異なり、コンテキストウィンドウの消費を抑えながらブラウザ操作が可能です。
+
+## 前提条件
+
+このスキルを使用するには、agent-browser CLIがインストールされている必要があります。
+
+インストールされていない場合は以下のコマンドでインストールしてください：
+
+```bash
+npm install -g agent-browser
+agent-browser install  # Chromiumをインストール
+```
+
+## 使い方
+
+ユーザーが以下のようなリクエストをした場合にこのスキルを使用します：
+
+- Webページの情報を取得したい場合
+- フォーム入力やログイン操作が必要な場合
+- 複数ページの巡回・スクレイピングが必要な場合
+- ブラウザ操作を明示的に依頼された場合
+
+### 例
+
+- 「GitHubのリポジトリページからスター数を取得して」
+- 「ログインページでテストユーザーとしてログインして」
+- 「5つの商品ページから価格情報を収集して」
+- 「このWebページのスクリーンショットを取得して」
+
+## あなたの役割
+
 あなたはブラウザ操作のコーディネーターです。自分では直接ブラウザ操作を行わず、browser-agent-operator サブエージェントに作業を委譲します。
 
-## 前提条件チェック（最初に必ず実行）
+### 重要なルール
 
-このコマンドは agent-browser CLI が必要です。以下のコマンドで利用可能か確認してください：
+1. **自分ではブラウザ操作しない**: agent-browser コマンドの直接実行は全て browser-agent-operator サブエージェントに任せる
+2. **コンテキスト節約**: スナップショットや大量のDOM情報はサブエージェント内で処理させ、要約のみ受け取る
+3. **進捗管理**: 複数ステップの操作が必要な場合、各ステップの完了を確認してから次を依頼する
+4. **エラーハンドリング**: サブエージェントからエラー報告を受けた場合、ユーザーに状況を説明し対処方針を提案する
+
+## 実行手順
+
+### Step 1: 前提条件チェック
+
 ```bash
-which agent-browser
+npx agent-browser --version
 ```
 
 **agent-browser がインストールされていない場合は、以下のメッセージを表示して処理を終了してください：**
@@ -17,35 +67,14 @@ npm install -g agent-browser
 agent-browser install  # Chromiumをインストール
 ```
 
-**agent-browser が利用可能な場合のみ、以下の処理を続行してください。**
+### Step 2: 依頼内容の分析
 
----
-
-## Agent Browser とは
-
-Agent Browser は Vercel が開発した CLI ツールで、AI エージェントがブラウザを自動操作できるように設計されています。Chrome DevTools MCP とは異なり、コンテキストウィンドウの消費を抑えながらブラウザ操作が可能です。
-
-## あなたの役割
-
-ユーザーからの依頼「$ARGUMENTS」を受けて、browser-agent-operator サブエージェントにブラウザ操作を委譲してください。
-
-## 重要なルール
-
-1. **自分ではブラウザ操作しない**: agent-browser コマンドの直接実行は全て browser-agent-operator サブエージェントに任せる
-2. **コンテキスト節約**: スナップショットや大量のDOM情報はサブエージェント内で処理させ、要約のみ受け取る
-3. **進捗管理**: 複数ステップの操作が必要な場合、各ステップの完了を確認してから次を依頼する
-4. **エラーハンドリング**: サブエージェントからエラー報告を受けた場合、ユーザーに状況を説明し対処方針を提案する
-
-## ワークフロー
-
-### Step 1: 依頼内容の分析
-
-ユーザーの依頼を分析し、以下を特定する：
+ユーザーの依頼「$ARGUMENTS」を分析し、以下を特定する：
 - 目標URL（明示されていない場合は確認）
 - 実行したい操作の種類（ナビゲーション、クリック、入力、情報取得など）
 - 期待する結果
 
-### Step 2: タスクの分解
+### Step 3: タスクの分解
 
 複雑な操作は以下のような単位に分解する：
 1. ブラウザでページを開く
@@ -54,11 +83,11 @@ Agent Browser は Vercel が開発した CLI ツールで、AI エージェン�
 4. 結果の確認・情報の抽出
 5. ブラウザを閉じる
 
-### Step 3: browser-agent-operator への委譲
+### Step 4: browser-agent-operator への委譲
 
 Task ツールを使って browser-agent-operator サブエージェントに作業を依頼する。
 
-**subagent_type**: `act-basic-plugins:browser-agent-operator` を指定
+**subagent_type**: `basic:browser-operator` を指定
 
 **必ず以下の3要素を含めてプロンプトを作成すること：**
 
@@ -107,7 +136,7 @@ Task ツールを使って browser-agent-operator サブエージェントに作
 [エラー内容と推奨される対処法]
 ```
 
-### Step 4: 結果の確認と報告
+### Step 5: 結果の確認と報告
 
 サブエージェントからの結果を確認し、ユーザーに報告する：
 - 成功した場合：実行結果の要約を報告
@@ -130,10 +159,10 @@ Task ツールを使って browser-agent-operator サブエージェントに作
    ## 目標
    - 対象URL: https://github.com/anthropics/claude-code
    - 操作手順:
-     1. agent-browser open <URL> でページを開く
-     2. agent-browser snapshot -i でインタラクティブ要素を取得
-     3. agent-browser get text @<要素参照> でスター数を取得
-     4. agent-browser close でブラウザを閉じる
+     1. npx agent-browser open <URL> でページを開く
+     2. npx agent-browser snapshot -i でインタラクティブ要素を取得
+     3. npx agent-browser get text @<要素参照> でスター数を取得
+     4. npx agent-browser close でブラウザを閉じる
    - 成功条件: スター数が数値として取得できること
 
    ## 報告してほしい内容
@@ -158,13 +187,13 @@ Task ツールを使って browser-agent-operator サブエージェントに作
    ## 目標
    - 対象URL: https://example.com/login
    - 操作手順:
-     1. agent-browser open <URL> でログインページを開く
-     2. agent-browser snapshot -i で入力フィールドを特定
-     3. agent-browser fill @<ユーザー名フィールド> "testuser"
-     4. agent-browser fill @<パスワードフィールド> "password"
-     5. agent-browser click @<ログインボタン>
-     6. agent-browser snapshot でログイン後のページを確認
-     7. agent-browser close でブラウザを閉じる
+     1. npx agent-browser open <URL> でログインページを開く
+     2. npx agent-browser snapshot -i で入力フィールドを特定
+     3. npx agent-browser fill @<ユーザー名フィールド> "testuser"
+     4. npx agent-browser fill @<パスワードフィールド> "password"
+     5. npx agent-browser click @<ログインボタン>
+     6. npx agent-browser snapshot でログイン後のページを確認
+     7. npx agent-browser close でブラウザを閉じる
    - 成功条件: ダッシュボードまたはホーム画面が表示されること
 
    ## 報告してほしい内容
@@ -189,10 +218,10 @@ Task ツールを使って browser-agent-operator サブエージェントに作
    ## 目標
    - 対象URL: [URLリスト]
    - 操作手順:
-     1. 各URLに対して順番に agent-browser open でアクセス
-     2. agent-browser snapshot -i で価格要素を特定
-     3. agent-browser get text @<価格要素> で価格を取得
-     4. 全URL処理後に agent-browser close
+     1. 各URLに対して順番に npx agent-browser open でアクセス
+     2. npx agent-browser snapshot -i で価格要素を特定
+     3. npx agent-browser get text @<価格要素> で価格を取得
+     4. 全URL処理後に npx agent-browser close
    - 成功条件: 全商品の価格が取得できること
 
    ## 報告してほしい内容
@@ -209,7 +238,7 @@ Task ツールを使って browser-agent-operator サブエージェントに作
 | 項目 | agent-browser | Chrome DevTools MCP |
 |------|--------------|---------------------|
 | セットアップ | npm install + Chromiumインストール | MCPサーバー設定 |
-| 操作方法 | CLIコマンド | MCPツール呼び出し |
+| 操作方法 | CLIコマンド（npx経由） | MCPツール呼び出し |
 | 要素特定 | `snapshot -i` で参照番号取得 | CSSセレクタ |
 | コンテキスト消費 | 少ない（スナップショットベース） | やや多い |
 | 並列実行 | `--session` で複数セッション | ページ単位 |
