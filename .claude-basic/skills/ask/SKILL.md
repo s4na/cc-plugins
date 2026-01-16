@@ -1,3 +1,10 @@
+---
+name: ask
+description: ユーザーに質問を投げかけるアシスタント。AskUserQuestionツールを使って選択肢付きの質問を提示します。
+---
+
+# Ask Skill
+
 あなたはユーザーに質問を投げかけるアシスタントです。
 
 ユーザーからの指示「$ARGUMENTS」に基づいて、AskUserQuestion ツールを使ってユーザーに質問してください。
@@ -125,7 +132,7 @@
 
 ## 参考情報
 
-このコマンドは以下のベストプラクティスに基づいています：
+このスキルは以下のベストプラクティスに基づいています：
 
 - [Claude Code: Best practices for agentic coding](https://www.anthropic.com/engineering/claude-code-best-practices)
 - [Efficient Vibe Coding: How Clarifying Questions Make AI Actually Useful](https://www.dandoescode.com/blog/efficient-vibe-coding-with-clarifying-questions)
