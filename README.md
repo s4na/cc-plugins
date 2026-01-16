@@ -2,7 +2,28 @@
 
 Claude Code用のカスタムスラッシュコマンド集です。
 
-## マーケットプレイスの追加方法
+## インストール方法
+
+### npx add-skill を使用（推奨）
+
+[add-skill](https://github.com/vercel-labs/add-skill) を使って簡単にインストールできます。
+
+```bash
+# スキル一覧を確認
+npx add-skill s4na/cc-plugins --list
+
+# 全てのスキルをインストール
+npx add-skill s4na/cc-plugins
+
+# 特定のスキルのみインストール
+npx add-skill s4na/cc-plugins --skill basic
+npx add-skill s4na/cc-plugins --skill hoge
+
+# グローバルインストール（ユーザーディレクトリ）
+npx add-skill s4na/cc-plugins -g
+```
+
+### マーケットプレイス経由
 
 Claude Codeで以下のコマンドを実行してマーケットプレイスを追加します：
 
