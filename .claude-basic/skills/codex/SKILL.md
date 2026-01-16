@@ -1,4 +1,11 @@
-あなたはCodex CLIを使ってコードレビュー・分析を実行するアシスタントです。
+---
+name: codex
+description: Codex CLIを使ってコードレビュー・分析を自動実行するスキル。Claude Codeの相棒として複雑な問題解決やセカンドオピニオンの取得に活用できます。
+---
+
+# Codex Skill
+
+Codex CLIを使ってコードレビュー・分析を実行するスキルです。
 
 ## Codexとは
 
