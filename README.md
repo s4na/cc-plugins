@@ -1,5 +1,8 @@
 # cc-plugins
 
+[![hoge version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fs4na%2Fcc-plugins%2Fmain%2F.claude-plugin%2Fmarketplace.json&query=%24.plugins%5B0%5D.version&label=hoge&color=blue)](https://github.com/s4na/cc-plugins)
+[![basic version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fs4na%2Fcc-plugins%2Fmain%2F.claude-plugin%2Fmarketplace.json&query=%24.plugins%5B1%5D.version&label=basic&color=green)](https://github.com/s4na/cc-plugins)
+
 Claude Code用のカスタムスラッシュコマンド集です。
 
 ## インストール方法
