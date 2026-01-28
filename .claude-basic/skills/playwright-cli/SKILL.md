@@ -201,6 +201,31 @@ playwright-cli screenshot
 playwright-cli close
 ```
 
+### 例4: ヘッドモード（ブラウザ表示）での実行
+
+デフォルトではヘッドレスモード（ブラウザ非表示）で実行されますが、`--headed` オプションを使うと実際にブラウザウィンドウが表示され、操作をリアルタイムで確認できます。
+
+```bash
+# ヘッドモードでブラウザを開く（ウィンドウが表示される）
+playwright-cli --headed open https://demo.playwright.dev/todomvc
+
+# 以降のコマンドは通常通り実行（操作がリアルタイムで見える）
+playwright-cli fill e8 "タスクを追加"
+playwright-cli press Enter
+
+# 終了時
+playwright-cli close
+playwright-cli session-stop
+```
+
+**ヘッドモードが便利なケース：**
+- デバッグ時に操作の様子を目視確認したい
+- ユーザーに操作のデモを見せたい
+- 要素の位置やレイアウトを確認したい
+- 自動操作の動作を検証したい
+
+**注意：** `--headed` オプションは `open` コマンドの前（セッション開始時）に指定する必要があります。
+
 ## agent-browser との違い
 
 | 項目 | playwright-cli | agent-browser |
