@@ -5,18 +5,18 @@ description: Playwright CLIを使ってブラウザ操作を自動実行する�
 
 # Playwright CLI Skill
 
-Playwright MCP Server v0.0.58 で追加された Playwright CLI を使ってブラウザ操作を自動実行するスキルです。
+Playwright CLI を使ってブラウザ操作を自動実行するスキルです。
 
 ## Playwright CLI とは
 
-Playwright CLI は @playwright/mcp パッケージに含まれる CLI ツールで、MCP サーバー経由よりもトークン効率が良くブラウザ操作が可能です。要素の参照には snapshot で取得した ref を使用します。
+Playwright CLI は @playwright/cli パッケージに含まれる CLI ツールで、MCP サーバー経由よりもトークン効率が良くブラウザ操作が可能です。要素の参照には snapshot で取得した ref を使用します。
 
 ## 前提条件
 
-このスキルを使用するには、@playwright/mcp がグローバルインストールされている必要があります。
+このスキルを使用するには、@playwright/cli がグローバルインストールされている必要があります。
 
 ```bash
-npm install -g @playwright/mcp@latest
+npm install -g @playwright/cli@latest
 ```
 
 インストール確認：
@@ -34,6 +34,7 @@ playwright-cli --help
 | `close` | ページを閉じる | `playwright-cli close` |
 | `snapshot` | ページスナップショットを取得（要素ref取得用） | `playwright-cli snapshot` |
 | `click <ref>` | 要素をクリック | `playwright-cli click e8` |
+| `dblclick <ref>` | 要素をダブルクリック | `playwright-cli dblclick e8` |
 | `fill <ref> <text>` | テキスト入力 | `playwright-cli fill e8 "Hello"` |
 | `type <text>` | 編集可能な要素にテキスト入力 | `playwright-cli type "Hello"` |
 | `hover <ref>` | 要素にホバー | `playwright-cli hover e8` |
@@ -105,6 +106,12 @@ playwright-cli --help
 | `session-stop-all` | 全セッション停止 |
 | `session-delete [name]` | セッションデータ削除 |
 
+### Configuration（設定）
+
+| コマンド | 説明 |
+|----------|------|
+| `config [config]` | 新しい設定でセッションを再起動（デフォルト: `playwright-cli.json`） |
+
 ### Dialog（ダイアログ）
 
 | コマンド | 説明 |
@@ -126,7 +133,7 @@ playwright-cli --help
 playwright-cli がインストールされていません。
 
 以下のコマンドでインストールしてください：
-npm install -g @playwright/mcp@latest
+npm install -g @playwright/cli@latest
 ```
 
 ### Step 2: 基本的なフロー
@@ -198,7 +205,7 @@ playwright-cli close
 
 | 項目 | playwright-cli | agent-browser |
 |------|---------------|---------------|
-| パッケージ | @playwright/mcp | agent-browser |
+| パッケージ | @playwright/cli | agent-browser |
 | ベース | Playwright | Puppeteer |
 | スナップショット | YAMLファイルに保存 | 標準出力 |
 | セッション管理 | session-* コマンド | --session オプション |
@@ -208,9 +215,20 @@ playwright-cli close
 
 `playwright-cli snapshot` を実行すると、`.playwright-cli/` ディレクトリにYAMLファイルが作成されます。このファイルには要素の ref（例: e8, e10）が含まれており、これを使って要素を操作します。
 
+## Global options（グローバルオプション）
+
+| オプション | 説明 |
+|----------|------|
+| `--config <path>` | カスタム設定ファイルを指定してセッションを作成（デフォルト: `playwright-cli.json`） |
+| `--headed` | ヘッドモード（ブラウザ表示あり）でセッションを作成 |
+| `--session <name>` | 特定のセッションスコープでコマンドを実行 |
+| `--help [command]` | ヘルプを表示 |
+| `--version` | バージョンを表示 |
+
 ## 注意事項
 
 - スナップショットは操作のたびに取得して最新の状態を確認することを推奨
 - ref は動的に変わる可能性があるため、操作前に必ず snapshot で確認する
 - 複数タブを使う場合は tab-select でアクティブタブを切り替える
 - 認証情報などの機密データの取り扱いに注意
+- デフォルトはヘッドレスモード。ブラウザを表示したい場合は `--headed` オプションを使用
