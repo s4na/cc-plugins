@@ -226,16 +226,6 @@ playwright-cli session-stop
 
 **注意：** `--headed` オプションは `open` コマンドの前（セッション開始時）に指定する必要があります。
 
-## agent-browser との違い
-
-| 項目 | playwright-cli | agent-browser |
-|------|---------------|---------------|
-| パッケージ | @playwright/cli | agent-browser |
-| ベース | Playwright | Puppeteer |
-| スナップショット | YAMLファイルに保存 | 標準出力 |
-| セッション管理 | session-* コマンド | --session オプション |
-| トレース | tracing-start/stop | なし |
-
 ## スナップショットファイル
 
 `playwright-cli snapshot` を実行すると、`.playwright-cli/` ディレクトリにYAMLファイルが作成されます。このファイルには要素の ref（例: e8, e10）が含まれており、これを使って要素を操作します。
