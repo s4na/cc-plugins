@@ -7,34 +7,7 @@ Claude Code用のカスタムスラッシュコマンド集です。
 
 ## インストール方法
 
-### npx add-skill を使用（推奨）
-
-[add-skill](https://github.com/vercel-labs/add-skill) を使って簡単にインストールできます。
-
-スキル一覧を確認:
-```bash
-npx add-skill s4na/cc-plugins --list
-```
-
-全てのスキルをインストール:
-```bash
-npx add-skill s4na/cc-plugins
-```
-
-特定のスキルのみインストール:
-```bash
-npx add-skill s4na/cc-plugins --skill basic
-```
-```bash
-npx add-skill s4na/cc-plugins --skill hoge
-```
-
-グローバルインストール（ユーザーディレクトリ）:
-```bash
-npx add-skill s4na/cc-plugins -g
-```
-
-### マーケットプレイス経由
+### マーケットプレイス経由（推奨）
 
 Claude Codeで以下のコマンドを実行してマーケットプレイスを追加します：
 
